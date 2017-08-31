@@ -1,0 +1,60 @@
+{
+  "name": "hsm_dr",
+  "description": "Local Chef Environment: HSM_DR",
+  "cookbook_versions": {
+
+  },
+  "json_class": "Chef::Environment",
+  "chef_type": "environment",
+  "default_attributes": {
+    "software_repo": "//10.0.2.3/public/hst/software",
+    "artifactory_url": "https://artifactory/artifactory/",
+    "artifactory_url_local": "http://10.0.2.3/artifactory",
+    "fixtest": {
+      "nfs_server": {
+        "hostname": "nfs-server",
+        "fqdn": "nfs-server.my-test-env.com",
+        "ip": "192.168.33.100"
+      },
+      "jenkins-a": {
+        "hostname": "jenkins-a",
+        "fqdn": "jenkins-a.my-test-env.com",
+        "ip": "192.168.33.101"
+      },
+      "jenkins-b": {
+        "hostname": "jenkins-b",
+        "fqdn": "jenkins-b.my-test-env.com",
+        "ip": "192.168.33.102"
+      },
+      "dr_master": {
+        "hostname": "dr-master",
+        "fqdn": "dr-master.my-test-env.com",
+        "ip": "192.168.33.110"
+      }
+    }
+  },
+  "override_attributes": {
+    "java_se": {
+      "uri": "http://10.0.2.3/artifactory/anonymous_generic/java-jdk/"
+    },
+    "hs_cloudbees_agent": {
+      "group": "domain_users",
+      "server_url": "https://dr-master.my-test-env.com",
+      "win_domainname": "WINAGENT",
+      "linux": {
+        "docker_composer_url": "http://10.0.2.3/artifactory/anonymous_generic/docker/docker-compose-1.8.1-Linux-x86_64"
+      },
+      "windows": {
+        "jdk_archive_url": "http://10.0.2.3/artifactory/hs_jenkins/java/jenkins_slave_jdk_1-8_0_121.zip"
+      },
+      "register": {
+        "token": "663ee96463a7b477bca98b71c857e200"
+      }
+    },
+    "hs_cloudbees_master": {
+      "master": {
+        "group": "domain_users"
+      }
+    }
+  }
+}
