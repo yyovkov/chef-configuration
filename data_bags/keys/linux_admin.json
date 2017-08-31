@@ -1,0 +1,4 @@
+{
+  "id": "linux_admin":
+  "keyfile": "/tmp/kitchen/data_bags/test_db_enc_key"
+}
